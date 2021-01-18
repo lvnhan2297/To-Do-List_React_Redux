@@ -1,12 +1,9 @@
 import React,{useState} from 'react'
-// addToDo function lấy data từ input truyền lên reducers
-import {addToDo} from './actions/addToDoAction'
-// kết nối giúp redux kết nối với react vì bản chất redux nó làm thư viện hoạt động riêng biệt vơi react
+import {addToDo} from './actions/toDoAction'
 import { connect } from 'react-redux';
+import ListToDo from './components/ListToDo'
 
-// fetchItemTodo hàm gửi dữ liệu hoạt động ở component App truyền sang addToDo để gửi đi
-// listToDo data được lấy từ store thông qua mapStateToProps
-const App = ({fetchItemTodo,listToDo}) => {
+const App = ({fetchItemTodo}) => {
   // khởi tạo state cho input 
   const [valueInput, setValueInput] = useState('');
   // sự kiện lấy giá trị input
@@ -30,26 +27,18 @@ const App = ({fetchItemTodo,listToDo}) => {
       <form>
         <input type="text" value={valueInput} onChange={handleChange}/>
         <button onClick={addItemTodDo}>add list</button>
-        <ol>
-          {listToDo.map((item,i)=>
-          <li key={i}>{item}</li>
-          )}
-        </ol>
       </form>
+        <ListToDo/>
     </>
   )
 }
-//gọi dữ liệu từ state từ store
-const mapStateToProps = state => {
-  return {
-      listToDo: state.addToDo.listTodo
-  }
-}
+
 // gửi dữ liệu lên state trên store
 const mapDispatchToProps = dispatch => {
   return {
     // chuyển dữ liệu từ 
-    fetchItemTodo: (valueInput) => {dispatch(addToDo(valueInput));}
+    fetchItemTodo: (valueInput) => {dispatch(addToDo(valueInput))},
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+
+export default connect(null,mapDispatchToProps)(App)

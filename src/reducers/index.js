@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import addToDo from './addToDo';
+import collectionToDo from './listToDo';
 
 const appReducers = combineReducers({
-  addToDo
+  collectionToDo
 });
 
 export default appReducers;

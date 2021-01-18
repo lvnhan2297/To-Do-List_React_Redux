@@ -2,18 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import appReducers from './reducers/index';
-
- // chức năng debug redux
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// khởi tạo store
-const store = createStore(
-  appReducers,
-  composeEnhancer(applyMiddleware())
-);
+import {store} from './store'
+import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
